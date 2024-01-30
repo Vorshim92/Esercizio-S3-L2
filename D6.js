@@ -154,6 +154,8 @@ const generateTable = function () {
 
   // CREAZIONE TAG TABLE
   let newTable = document.createElement("table");
+  newTable.style.border = "1px solid #ddd;";
+  newTable.style.padding = "8px";
   // CREAZIONE TAG THEAD
   let newThead = document.createElement("thead");
   // CREAZIONE TAG TBODY
@@ -196,14 +198,31 @@ generateTable();
              Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
           */
 
-const addRow = function () {};
+const addRow = function (numbersOfRow) {
+  let tableDiv = document.getElementById("tableArea");
 
+  for (let i = 0; i < numbersOfRow; i++) {
+    let newTr = document.createElement("tr");
+    for (let j = 0; j < 4; j++) {
+      let newTd = document.createElement("td");
+
+      newTr.appendChild(newTd);
+    }
+    tableDiv.querySelector("table > tbody").appendChild(newTr);
+  }
+};
+addRow(2);
 /* ESERCIZIO 14
             Crea una funzione che nasconda le immagini della tabella quando eseguita
           */
 
-const hideAllImages = function () {};
-
+const hideAllImages = function () {
+  const images = document.querySelectorAll("table > td:first-child");
+  for (let i = 0; i < images.length; i++) {
+    images[i].style.display = "none";
+  }
+};
+hideAllImages();
 /* EXTRA ESERCIZIO 15
             Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
           */
