@@ -151,16 +151,18 @@ revealFooterLink();
           */
 
 const generateTable = function () {
-  let tableDiv = document.getElementById("tableArea");
-  let newTable = document.createElement("table");
-
-  let newThead = document.createElement("thead");
-  let newTr = document.createElement("tr");
-  let newTh = document.createElement("th");
-
-  newTr.appendChild(newTh);
-
-  tableDiv.appendChild(newTable);
+  //   let tableDiv = document.getElementById("tableArea");
+  //   let newTable = document.createElement("table");
+  //   let newThead = document.createElement("thead");
+  //   let newTr = document.createElement("tr");
+  //   let newTh1 = document.createElement("th");
+  //   newTh1.innerText = "Immagine"
+  //   let newTh2 = document.createElement("th");
+  //   newTh1.innerText = "Nome Prodotto"
+  //   let newTh3 = document.createElement("th");
+  //   newTh1.innerText = "Quantità"
+  //   let newTh4 = document.createElement("th");
+  //   newTh1.innerText = "Prezzo"
 };
 generateTable();
 
@@ -181,7 +183,8 @@ const hideAllImages = function () {};
           */
 
 const changeColorWithRandom = function () {
-  let h2 = document.body.querySelector("h2");
+  let h2 = document.getElementById("changeMyColor");
+  h2.style.cursor = "pointer";
   h2.onclick = function changeColor() {
     const letters = "0123456789ABCDEF"; // range colori esadecimale
     let color = "#";
