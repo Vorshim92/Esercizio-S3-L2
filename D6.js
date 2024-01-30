@@ -2,20 +2,18 @@
          Scrivi una funzione per cambiare il titolo della pagina in qualcos'altro
       */
 
-const changeTitle = function (h1, h2) {
-  let newTitleH1 = document.getElementById("title").querySelector("h1");
-  let newTitleH2 = document.getElementById("title").querySelector("h2");
+const changeTitle = function (h1) {
+  let newTitleH1 = document.querySelector("h1");
   newTitleH1.innerText = h1;
-  newTitleH2.innerText = h2;
 };
-changeTitle("SI! PUO! FARE!", "SI PUO FARE ECCOME!!!!");
+changeTitle("SI! PUO! FARE!");
 
 /* ESERCIZIO 2
              Scrivi una funzione per aggiungere al titolo della pagina una classe "myHeading"
           */
 
 const addClassToTitle = function (className) {
-  let newClass = document.getElementById("title").classList.add(className);
+  let newClass = document.querySelector("h1").classList.add(className);
 };
 addClassToTitle("myHeading");
 /* ESERCIZIO 3
@@ -124,7 +122,7 @@ const makeItClickable = function () {
   let h1 = document.body.querySelector("h1");
   h1.style.cursor = "pointer";
   h1.onclick = function removeLastLetter() {
-    let newH1 = Array.from(h1.innerText);
+    let newH1 = Array.from(h1.innerText); //si potrebbe usare anche Slice per lavorare direttamente sulla stringa, io ho preferito trasformare in un Array di stringhe (per ogni carattarere) e poi usare JOIN per riunirle dopo aver eliminato l'ultima.
     newH1.pop();
     h1.innerText = newH1.join("");
   };
@@ -151,18 +149,18 @@ revealFooterLink();
           */
 
 const generateTable = function () {
-  //   let tableDiv = document.getElementById("tableArea");
-  //   let newTable = document.createElement("table");
-  //   let newThead = document.createElement("thead");
-  //   let newTr = document.createElement("tr");
-  //   let newTh1 = document.createElement("th");
-  //   newTh1.innerText = "Immagine"
-  //   let newTh2 = document.createElement("th");
-  //   newTh1.innerText = "Nome Prodotto"
-  //   let newTh3 = document.createElement("th");
-  //   newTh1.innerText = "Quantità"
-  //   let newTh4 = document.createElement("th");
-  //   newTh1.innerText = "Prezzo"
+  let tableDiv = document.getElementById("tableArea");
+  let newTable = document.createElement("table");
+  let newThead = document.createElement("thead");
+  let newTr = document.createElement("tr");
+  let newTh1 = document.createElement("th");
+  newTh1.innerText = "Immagine";
+  let newTh2 = document.createElement("th");
+  newTh1.innerText = "Nome Prodotto";
+  let newTh3 = document.createElement("th");
+  newTh1.innerText = "Quantità";
+  let newTh4 = document.createElement("th");
+  newTh1.innerText = "Prezzo";
 };
 generateTable();
 
