@@ -5,10 +5,10 @@
 const changeTitle = function (h1, h2) {
   let newTitleH1 = document.getElementById("title").querySelector("h1");
   let newTitleH2 = document.getElementById("title").querySelector("h2");
-  newTitleH1.textContent = h1;
-  newTitleH2.textContent = h2;
+  newTitleH1.innerText = h1;
+  newTitleH2.innerText = h2;
 };
-changeTitle("SI! PUO! FARE!", "SI!");
+changeTitle("SI! PUO! FARE!", "SI PUO FARE ECCOME!!!!");
 
 /* ESERCIZIO 2
              Scrivi una funzione per aggiungere al titolo della pagina una classe "myHeading"
@@ -32,7 +32,7 @@ const changePcontent = function (testoP) {
   //         if (childDiv.children[j].tagName === "P") {
   //           //perché funziona solo con il MAISCUOLO?
   //           let childP = childDiv.children[j];
-  //           childP.textContent = testoP;
+  //           childP.innerText = testoP;
   //         }
   //       }
   //     }
@@ -41,7 +41,7 @@ const changePcontent = function (testoP) {
 
   let changeP = document.body.querySelectorAll("P");
   changeP.forEach((p) => {
-    p.textContent = testoP;
+    p.innerText = testoP;
   });
 };
 
@@ -87,7 +87,7 @@ addToTheSecond("4th");
 const addParagraph = function (paragrafo) {
   let primoDiv = document.body.querySelector("div");
   let newP = document.createElement("p");
-  newP.textContent = paragrafo; // uguale all'esercizio precedente ma con un passaggio in meno poiché ho usato direttamente ".textContent" per aggiungere il testo
+  newP.innerText = paragrafo; // uguale all'esercizio precedente ma con un passaggio in meno poiché ho usato direttamente ".innerText" per aggiungere il testo
 
   primoDiv.appendChild(newP);
 };
@@ -99,7 +99,8 @@ addParagraph("questo è il nuovo paragrafo nel primo DIV");
 
 const hideFirstUl = function () {
   let firstList = document.getElementById("firstList");
-  firstList.style.display = "none";
+  //firstList.style.display = "none";
+  firstList.hidden = true; //alternativa (parametro che ho notato dall'inspector)
 };
 hideFirstUl();
 
@@ -121,26 +122,47 @@ paintItGreen("green");
 
 const makeItClickable = function () {
   let h1 = document.body.querySelector("h1");
+  h1.style.cursor = "pointer";
   h1.onclick = function removeLastLetter() {
-    let newH1 = Array.from(h1.textContent);
+    let newH1 = Array.from(h1.innerText);
     newH1.pop();
-    h1.textContent = newH1.join("");
+    h1.innerText = newH1.join("");
   };
 };
+
 makeItClickable();
 
 /* ESERCIZIO 10
              Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
             */
 
-const revealFooterLink = function () {};
+const revealFooterLink = function () {
+  let footer = document.body.querySelector("footer");
+  footer.onclick = function showURL() {
+    let hrefURL = footer.querySelector("a");
+    alert(hrefURL.href);
+  };
+};
+revealFooterLink();
 
 /* ESERCIZIO 11
              Crea una funzione che crei una tabella nell'elemento con id "tableArea".
              La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
           */
 
-const generateTable = function () {};
+const generateTable = function () {
+  let tableDiv = document.getElementById("tableArea");
+  let newTable = document.createElement("table");
+
+  let newThead = document.createElement("thead");
+  let newTr = document.createElement("tr");
+  let newTh = document.createElement("th");
+
+  newTr.appendChild(newTh);
+
+  tableDiv.appendChild(newTable);
+};
+generateTable();
 
 /* ESERCIZIO 12
              Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
@@ -158,4 +180,15 @@ const hideAllImages = function () {};
             Crea una funzione che cambi il colore del h2 con id "changeMyColor" con un colore random ad ogni click ricevuto
           */
 
-const changeColorWithRandom = function () {};
+const changeColorWithRandom = function () {
+  let h2 = document.body.querySelector("h2");
+  h2.onclick = function changeColor() {
+    const letters = "0123456789ABCDEF"; // range colori esadecimale
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    h2.style.color = color;
+  };
+};
+changeColorWithRandom(); // per dare un random color toccherebbe creare una funzione extra che genera un valore RGB sempre usando Math.floor(Math.Random())
