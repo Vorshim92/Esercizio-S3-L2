@@ -149,18 +149,46 @@ revealFooterLink();
           */
 
 const generateTable = function () {
+  // dichiaro il DIV Madre
   let tableDiv = document.getElementById("tableArea");
+
+  // CREAZIONE TAG TABLE
   let newTable = document.createElement("table");
+  // CREAZIONE TAG THEAD
   let newThead = document.createElement("thead");
-  let newTr = document.createElement("tr");
-  let newTh1 = document.createElement("th");
-  newTh1.innerText = "Immagine";
-  let newTh2 = document.createElement("th");
-  newTh1.innerText = "Nome Prodotto";
-  let newTh3 = document.createElement("th");
-  newTh1.innerText = "Quantità";
-  let newTh4 = document.createElement("th");
-  newTh1.innerText = "Prezzo";
+  // CREAZIONE TAG TBODY
+  let newTbody = document.createElement("tbody");
+
+  // CREAZIONE STRUTTURA THEAD
+  let trHead = document.createElement("tr");
+
+  let tH1 = document.createElement("th");
+  tH1.innerText = "Immagine";
+  let tH2 = document.createElement("th");
+  tH2.innerText = "Nome Prodotto";
+  let tH3 = document.createElement("th");
+  tH3.innerText = "Quantità";
+  let tH4 = document.createElement("th");
+  tH4.innerText = "Prezzo";
+
+  trHead.appendChild(tH1);
+  trHead.appendChild(tH2);
+  trHead.appendChild(tH3);
+  trHead.appendChild(tH4);
+
+  tableDiv.appendChild(newTable).appendChild(newThead).appendChild(trHead);
+
+  for (let i = 0; i < 5; i++) {
+    let newTr = document.createElement("tr");
+    for (let j = 0; j < 4; j++) {
+      let newTd = document.createElement("td");
+
+      newTr.appendChild(newTd);
+    }
+    newTbody.appendChild(newTr);
+  }
+
+  newTable.appendChild(newTbody);
 };
 generateTable();
 
