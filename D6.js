@@ -121,6 +121,11 @@ paintItGreen("green");
 
 const makeItClickable = function () {
   let h1 = document.body.querySelector("h1");
+  h1.onclick = function removeLastLetter() {
+    let newH1 = Array.from(h1.textContent);
+    newH1.pop();
+    h1.textContent = newH1.join("");
+  };
 };
 makeItClickable();
 
