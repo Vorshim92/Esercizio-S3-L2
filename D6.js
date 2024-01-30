@@ -99,19 +99,30 @@ addParagraph("questo è il nuovo paragrafo nel primo DIV");
 
 const hideFirstUl = function () {
   let firstList = document.getElementById("firstList");
+  firstList.style.display = "none";
 };
 hideFirstUl();
+
 /* ESERCIZIO 8
              Scrivi una funzione che renda verde il background di ogni lista non ordinata
             */
 
-const paintItGreen = function () {};
+const paintItGreen = function (colore) {
+  let allList = document.body.querySelectorAll("ul");
+  allList.forEach((background) => {
+    background.style.backgroundColor = colore;
+  });
+};
+paintItGreen("green");
 
 /* ESERCIZIO 9
              Scrivi una funzione che rimuova l'ultima lettera dall'h1 ogni volta che l'utente lo clicca
             */
 
-const makeItClickable = function () {};
+const makeItClickable = function () {
+  let h1 = document.body.querySelector("h1");
+};
+makeItClickable();
 
 /* ESERCIZIO 10
              Crea una funzione che, al click sul footer, riveli l'URL del link interno come contenuto di un alert()
