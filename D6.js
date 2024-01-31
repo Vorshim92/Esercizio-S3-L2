@@ -61,6 +61,9 @@ changeUrls("https://www.google.com");
 //esperimento mio per vedere su console la differenza tra NodeList e Array
 let changeURL = document.body.querySelectorAll("a:not(footer a)");
 console.log(changeURL); // nodelist
+let fromGetElement = document.body.getElementsByTagName("a");
+console.log(fromGetElement); // getelement
+
 const tuttiA = Array.from(changeURL);
 console.log(tuttiA); // array
 
@@ -148,70 +151,55 @@ revealFooterLink();
              La tabella avrà 5 elementi e questa struttura: immagine, nome prodotto, quantità, prezzo
           */
 
-const generateTable = function () {
-  // dichiaro il DIV Madre
+const generateTable = function (nStructure, th1, th2, th3, th4, th5) {
+  //   // dichiaro il DIV Madre
   let tableDiv = document.getElementById("tableArea");
 
-  // CREAZIONE TAG TABLE
+  //   // CREAZIONE TAG TABLE
   let newTable = document.createElement("table");
   newTable.style.border = "1px solid #ddd;";
   newTable.style.padding = "8px";
   // CREAZIONE TAG THEAD
   let newThead = document.createElement("thead");
-  // CREAZIONE TAG TBODY
-  let newTbody = document.createElement("tbody");
 
-  // CREAZIONE STRUTTURA THEAD
-  let trHead = document.createElement("tr");
+  let newTr = document.createElement("tr");
 
-  let tH1 = document.createElement("th");
-  tH1.innerText = "Immagine";
-  let tH2 = document.createElement("th");
-  tH2.innerText = "Nome Prodotto";
-  let tH3 = document.createElement("th");
-  tH3.innerText = "Quantità";
-  let tH4 = document.createElement("th");
-  tH4.innerText = "Prezzo";
-
-  trHead.appendChild(tH1);
-  trHead.appendChild(tH2);
-  trHead.appendChild(tH3);
-  trHead.appendChild(tH4);
-
-  tableDiv.appendChild(newTable).appendChild(newThead).appendChild(trHead);
-
-  for (let i = 0; i < 5; i++) {
-    let newTr = document.createElement("tr");
-    for (let j = 0; j < 4; j++) {
-      let newTd = document.createElement("td");
-
-      newTr.appendChild(newTd);
-    }
-    newTbody.appendChild(newTr);
+  for (let j = 0; j < nStructure; j++) {
+    let tH = document.createElement("th");
+    tH.innerText = arguments[j + 1];
+    newTr.appendChild(tH);
   }
-
-  newTable.appendChild(newTbody);
+  newThead.appendChild(newTr);
+  const structureTable = nStructure;
+  tableDiv.appendChild(newTable).appendChild(newThead);
+  return structureTable;
 };
-generateTable();
-
+const structureTable = generateTable(
+  4,
+  "immagine",
+  "nome prodotto",
+  "quantità",
+  "prezzo"
+);
 /* ESERCIZIO 12
              Crea una funzione che aggiunga una riga alla tabella precedentemente creata e fornisca i dati necessari come parametri
           */
 
-const addRow = function (numbersOfRow) {
+const addRow = function (numbersOfRow, structureTable) {
   let tableDiv = document.getElementById("tableArea");
-
+  // CREAZIONE TAG TBODY
+  let newTbody = document.createElement("tbody");
   for (let i = 0; i < numbersOfRow; i++) {
     let newTr = document.createElement("tr");
-    for (let j = 0; j < 4; j++) {
+    for (let j = 0; j < structureTable; j++) {
       let newTd = document.createElement("td");
 
       newTr.appendChild(newTd);
     }
-    tableDiv.querySelector("table > tbody").appendChild(newTr);
+    tableDiv.querySelector("table").appendChild(newTbody).appendChild(newTr);
   }
 };
-addRow(2);
+addRow(5, structureTable);
 /* ESERCIZIO 14
             Crea una funzione che nasconda le immagini della tabella quando eseguita
           */
